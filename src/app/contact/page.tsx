@@ -8,7 +8,7 @@ import { CheckCircle } from "lucide-react"; // Import for success icon
 
 import NavbarLayoutFloatingInline from "@/components/navbar/NavbarLayoutFloatingInline";
 import FooterBase from "@/components/sections/footer/FooterBase";
-import ContactCenter from '@/components/sections/contact/ContactCenter';
+import ContactSplitForm from '@/components/sections/contact/ContactSplitForm'; // Changed from ContactCenter
 import ButtonShiftHover from '@/components/button/ButtonShiftHover/ButtonShiftHover'; // For the call button
 
 export default function ContactPage() {
@@ -33,9 +33,16 @@ export default function ContactPage() {
     }
   };
 
-  const handleSubmit = async (email: string) => {
+  const handleSubmit = async (formData: Record<string, string>) => { // Updated signature to accept formData
     setSubmissionStatus('submitting');
     setSubmissionMessage('');
+
+    const email = formData.email; // Extract email from form data
+    if (!email) {
+      setSubmissionStatus('error');
+      setSubmissionMessage('Email address is required.');
+      return;
+    }
 
     try {
       const response = await fetch('/api/submit-lead', {
@@ -43,7 +50,7 @@ export default function ContactPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email }), // Still sending just email to the API
       });
 
       const data = await response.json();
@@ -164,15 +171,18 @@ export default function ContactPage() {
               </div>
             </div>
           ) : (
-            <ContactCenter
-              tag="Get in Touch"
+            <ContactSplitForm
               title="Request a Free Estimate"
               description="Fill out the form below to get a no-obligation estimate for your hardwood flooring project."
-              inputPlaceholder="Enter your email address"
+              inputs={[
+                { name: "name", type: "text", placeholder: "Your Name", required: true },
+                { name: "email", type: "email", placeholder: "Enter your email address", required: true }
+              ]}
               buttonText={submissionStatus === 'submitting' ? 'Submitting...' : 'Send Request'}
               onSubmit={handleSubmit}
+              useInvertedBackground={false} // Added required prop
               className="py-16 lg:py-24"
-              tagClassName="text-primary-cta"
+              // Removed tag and tagClassName as they are not in ContactSplitForm's schema
             />
           )}
           {submissionStatus === 'error' && (
