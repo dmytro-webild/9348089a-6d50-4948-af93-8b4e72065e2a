@@ -171,6 +171,11 @@ export default function LandingPage() {
             ]}
             title="Our Expert Flooring Services"
             description="Stevenson's Hardwood Floors offers a comprehensive range of solutions to meet all your residential and commercial flooring needs."
+            buttons={[
+              {
+                text: "Get Free Estimate",                href: "/contact"
+              }
+            ]}
           />
         </div>
 
@@ -274,6 +279,11 @@ export default function LandingPage() {
             imageSrc="https://img.b2bpic.net/free-photo/table-consulting-paperwork-professional-invest-executive_1418-63.jpg?id=1235723&_wi=1"
             imageAlt="Experienced flooring contractor team standing proudly"
             mediaAnimation="slide-up"
+            buttons={[
+              {
+                text: "Get Free Estimate",                href: "/contact"
+              }
+            ]}
           />
         </div>
 
