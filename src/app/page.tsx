@@ -14,9 +14,23 @@ import SplitAbout from "@/components/sections/about/SplitAbout";
 import TestimonialCardFive from "@/components/sections/testimonial/TestimonialCardFive";
 
 export default function LandingPage() {
-  const phoneNumber = "+13364297774"; // Ensure consistent phone number format
-
-  // Removed handleCallNow as buttons now directly use href for phone calls
+  const phoneNumber = "+13364297774";
+  const handleCallNow = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(phoneNumber)
+        .then(() => {
+          alert("Phone number copied to clipboard! You can now paste it into your phone dialer or preferred communication app.");
+        })
+        .catch((err) => {
+          console.error("Failed to copy phone number:", err);
+          // Fallback or just proceed to call
+          window.location.href = `tel:${phoneNumber}`;
+        });
+    } else {
+      // Fallback for browsers without clipboard API or mobile
+      window.location.href = `tel:${phoneNumber}`;
+    }
+  };
 
   return (
     <ThemeProvider
@@ -81,7 +95,7 @@ export default function LandingPage() {
                 text: "Get Free Estimate",                href: "/contact"
               },
               {
-                text: "Call Now",                href: `tel:${phoneNumber}` // Updated to direct href
+                text: "Call Now",                onClick: handleCallNow
               }
             ]}
             mediaItems={[
