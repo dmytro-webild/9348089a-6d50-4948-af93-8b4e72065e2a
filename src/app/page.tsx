@@ -76,7 +76,7 @@ export default function LandingPage() {
             ]}
             brandName="Stevenson's Hardwood Floors"
             button={{
-              text: "Get Free Estimate",              onClick: handleCallNow
+              text: "Get Free Estimate",              href: "/contact"
             }}
             logoClassName="text-2xl font-semibold"
           />
@@ -92,7 +92,7 @@ export default function LandingPage() {
             tag="✓ 30+ Years Experience • BBB Accredited • HomeAdvisor Approved • 50+ Five-Star Reviews • Licensed & Insured"
             buttons={[
               {
-                text: "Get Free Estimate",                onClick: handleCallNow
+                text: "Get Free Estimate",                href: "/contact"
               },
               {
                 text: "Call Now",                onClick: handleCallNow
@@ -365,7 +365,7 @@ export default function LandingPage() {
               {
                 title: "Contact",                items: [
                   {
-                    label: "Get Free Estimate",                    href: "tel:+13364297774"
+                    label: "Get Free Estimate",                    href: "/contact"
                   },
                   {
                     label: "Call Us",                    href: "tel:+13364297774"
