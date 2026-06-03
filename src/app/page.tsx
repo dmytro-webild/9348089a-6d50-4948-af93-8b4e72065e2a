@@ -46,7 +46,7 @@ export default function LandingPage() {
               {
                 name: "FAQ",                id: "#faq"},
               {
-                name: "Contact",                href: "/contact"},
+                name: "Contact",                id: "/contact"},
             ]}
             brandName="Stevenson's Hardwood Floors"
             button={{
