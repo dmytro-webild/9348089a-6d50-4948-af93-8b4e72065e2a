@@ -25,25 +25,34 @@ export default function ContactPage() {
           <NavbarLayoutFloatingInline
             navItems={[
               {
-                name: "Home",                id: "#hero"},
+                name: "Home",                id: "/"
+              },
               {
-                name: "Why Us",                id: "#why-us"},
+                name: "Why Us",                id: "#why-us"
+              },
               {
-                name: "Services",                id: "#services"},
+                name: "Services",                id: "#services"
+              },
               {
-                name: "Gallery",                id: "#gallery"},
+                name: "Gallery",                id: "#gallery"
+              },
               {
-                name: "Reviews",                id: "#reviews"},
+                name: "Reviews",                id: "#reviews"
+              },
               {
-                name: "About",                id: "#about"},
+                name: "About",                id: "#about"
+              },
               {
-                name: "FAQ",                id: "#faq"},
+                name: "FAQ",                id: "#faq"
+              },
               {
-                name: "Contact",                id: "/contact"},
+                name: "Contact",                id: "/contact"
+              }
             ]}
             brandName="Stevenson's Hardwood Floors"
             button={{
-              text: "Get Free Estimate",              href: "/contact"}}
+              text: "Get Free Estimate",              href: "/contact"
+            }}
             logoClassName="text-2xl font-semibold"
           />
         </div>
@@ -56,11 +65,12 @@ export default function ContactPage() {
               { name: "name", type: "text", placeholder: "Your Name", required: true },
               { name: "phone", type: "tel", placeholder: "Phone Number", required: true },
               { name: "email", type: "email", placeholder: "Email Address", required: true },
-              { name: "address", type: "text", placeholder: "Your Address", required: false },
+              { name: "address", type: "text", placeholder: "Your Address", required: false }
             ]}
             multiSelect={{
               name: "service",              label: "Service You're Interested In",              options: [
-                "Hardwood Floor Installation",                "Hardwood Floor Refinishing",                "Floor Sanding",                "Luxury Vinyl Plank Installation",                "Laminate Flooring Installation",                "Floor Repairs",                "Custom Flooring Solutions",                "Other"],
+                "Hardwood Floor Installation",                "Hardwood Floor Refinishing",                "Floor Sanding",                "Luxury Vinyl Plank Installation",                "Laminate Flooring Installation",                "Floor Repairs",                "Custom Flooring Solutions",                "Other"
+              ]
             }}
             buttonText="Submit Request"
             imageSrc="https://img.b2bpic.net/free-photo/table-consulting-paperwork-professional-invest-executive_1418-63.jpg?id=1235723&_wi=2"
@@ -78,43 +88,57 @@ export default function ContactPage() {
               {
                 title: "Services",                items: [
                   {
-                    label: "Hardwood Installation",                    href: "#services"},
+                    label: "Hardwood Installation",                    href: "#services"
+                  },
                   {
-                    label: "Refinishing & Sanding",                    href: "#services"},
+                    label: "Refinishing & Sanding",                    href: "#services"
+                  },
                   {
-                    label: "LVP & Laminate",                    href: "#services"},
+                    label: "LVP & Laminate",                    href: "#services"
+                  },
                   {
-                    label: "Floor Repairs",                    href: "#services"},
+                    label: "Floor Repairs",                    href: "#services"
+                  },
                   {
-                    label: "Custom Solutions",                    href: "#services"},
-                ],
+                    label: "Custom Solutions",                    href: "#services"
+                  }
+                ]
               },
               {
                 title: "Company",                items: [
                   {
-                    label: "About Us",                    href: "#about"},
+                    label: "About Us",                    href: "#about"
+                  },
                   {
-                    label: "Our Work",                    href: "#gallery"},
+                    label: "Our Work",                    href: "#gallery"
+                  },
                   {
-                    label: "Testimonials",                    href: "#reviews"},
+                    label: "Testimonials",                    href: "#reviews"
+                  },
                   {
-                    label: "Service Areas",                    href: "#service-areas"},
+                    label: "Service Areas",                    href: "#service-areas"
+                  },
                   {
-                    label: "FAQs",                    href: "#faq"},
-                ],
+                    label: "FAQs",                    href: "#faq"
+                  }
+                ]
               },
               {
                 title: "Contact",                items: [
                   {
-                    label: "Get Free Estimate",                    href: "/contact"},
+                    label: "Get Free Estimate",                    href: "/contact"
+                  },
                   {
-                    label: "Call Us",                    href: "tel:+13364297774"},
+                    label: "Call Us",                    href: "tel:+13364297774"
+                  },
                   {
-                    label: "Email Us",                    href: "mailto:info@stevensonhardwoodfloors.com"},
+                    label: "Email Us",                    href: "mailto:info@stevensonhardwoodfloors.com"
+                  },
                   {
-                    label: "Visit Us",                    href: "https://maps.google.com/?q=Elkin,North Carolina"},
-                ],
-              },
+                    label: "Visit Us",                    href: "https://maps.google.com/?q=Elkin,North Carolina"
+                  }
+                ]
+              }
             ]}
             logoText="Stevenson's Hardwood Floors"
             copyrightText="© 2024 Stevenson's Hardwood Floors. All rights reserved."
