@@ -7,6 +7,7 @@ import FaqDouble from "@/components/sections/faq/FaqDouble";
 import FeatureCardThree from "@/components/sections/feature/featureCardThree/FeatureCardThree";
 import FooterBase from "@/components/sections/footer/FooterBase";
 import HeroSplitDualMedia from "@/components/sections/hero/HeroSplitDualMedia";
+import NavbarLayoutFloatingInline from "@/components/navbar/NavbarLayoutFloatingInline";
 import ProductCardTwo from "@/components/sections/product/ProductCardTwo";
 import SocialProofOne from "@/components/sections/socialProof/SocialProofOne";
 import SplitAbout from "@/components/sections/about/SplitAbout";
@@ -27,6 +28,41 @@ export default function LandingPage() {
       headingFontWeight="light"
     >
       <ReactLenis root>
+        <div id="nav" data-section="nav">
+          <NavbarLayoutFloatingInline
+            navItems={[
+              {
+                name: "Home",                id: "/"
+              },
+              {
+                name: "Why Homeowners Choose Us",                id: "#why-us"
+              },
+              {
+                name: "Our Expert Flooring Services",                id: "#services"
+              },
+              {
+                name: "Before & After Transformations",                id: "#gallery"
+              },
+              {
+                name: "What Our Customers Say",                id: "#reviews"
+              },
+              {
+                name: "Three Decades of Flooring Excellence",                id: "#about"
+              },
+              {
+                name: "Frequently Asked Questions",                id: "#faq"
+              },
+              {
+                name: "Contact",                id: "/contact"
+              }
+            ]}
+            brandName="Stevenson's Hardwood Floors"
+            button={{
+              text: "Get Free Estimate",              href: "/contact"
+            }}
+            logoClassName="text-2xl font-semibold"
+          />
+        </div>
 
         <div id="hero" data-section="hero">
           <HeroSplitDualMedia
