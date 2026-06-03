@@ -48,13 +48,19 @@ export default function ThankYouPage() {
     };
   }, [router]);
 
-  // ThemeProvider props copied from src/app/page.tsx for consistency
-  const themeProps = {
-    defaultButtonVariant: "hover-magnetic",    defaultTextAnimation: "entrance-slide",    borderRadius: "rounded",    contentWidth: "medium",    sizing: "mediumLargeSizeMediumTitles",    background: "fluid",    cardStyle: "glass-depth",    primaryButtonStyle: "shadow",    secondaryButtonStyle: "solid",    headingFontWeight: "light"
-  };
-
   return (
-    <ThemeProvider {...themeProps}>
+    <ThemeProvider
+      defaultButtonVariant="hover-magnetic"
+      defaultTextAnimation="entrance-slide"
+      borderRadius="rounded"
+      contentWidth="medium"
+      sizing="mediumLargeSizeMediumTitles"
+      background="fluid"
+      cardStyle="glass-depth"
+      primaryButtonStyle="shadow"
+      secondaryButtonStyle="solid"
+      headingFontWeight="light"
+    >
       <div className="flex min-h-screen flex-col items-center justify-center p-4 text-center bg-background text-foreground">
         <CheckCircle2 className="h-24 w-24 text-green-500 mb-6 animate-fade-in" />
         <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-slide-in-up">
