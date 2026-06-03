@@ -51,9 +51,6 @@ export default function LandingPage() {
       brandName="Stevenson's Hardwood Floors"
       button={{
         text: "Get Free Estimate",          href: "#contact"}}
-      topBarButton={{
-        text: "Call Now",        href: "tel:+13364297774"
-      }}
       logoClassName="text-2xl font-semibold"
     />
   </div>
