@@ -90,6 +90,7 @@ export default function ContactPage() {
               }
             ]}
             background={{ variant: "radial-gradient" }}
+            useInvertedBackground={false}
           />
         </div>
 

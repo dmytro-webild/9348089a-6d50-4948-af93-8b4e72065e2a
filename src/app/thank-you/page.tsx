@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CheckCircle2 } from "lucide-react";
-import { ThemeProvider } from "@/providers/themeProvider/ThemeProvider";
+import { ThemeProvider, ThemeProviderProps } from "@/providers/themeProvider/ThemeProvider"; // Modified import
 import ButtonElasticEffect from "@/components/button/ButtonElasticEffect/ButtonElasticEffect";
 
 export default function ThankYouPage() {
@@ -49,7 +49,7 @@ export default function ThankYouPage() {
   }, [router]);
 
   // ThemeProvider props copied from src/app/page.tsx for consistency
-  const themeProps = {
+  const themeProps: ThemeProviderProps = { // Explicitly typed for fix
     defaultButtonVariant: "hover-magnetic",    defaultTextAnimation: "entrance-slide",    borderRadius: "rounded",    contentWidth: "medium",    sizing: "mediumLargeSizeMediumTitles",    background: "fluid",    cardStyle: "glass-depth",    primaryButtonStyle: "shadow",    secondaryButtonStyle: "solid",    headingFontWeight: "light"
   };
 
