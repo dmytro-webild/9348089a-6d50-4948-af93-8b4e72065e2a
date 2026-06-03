@@ -51,7 +51,6 @@ export default function LandingPage() {
       brandName="Stevenson's Hardwood Floors"
       button={{
         text: "Get Free Estimate",        href: "#contact"}}
-      logoClassName="text-2xl font-semibold"
     />
   </div>
 
@@ -114,28 +113,28 @@ export default function LandingPage() {
       products={[
         {
           id: "service-hardwood-installation",          brand: "Hardwood",          name: "Hardwood Floor Installation",          price: "Free Estimate",          rating: 5,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/male-worker-puts-laminate-flooring-floor_169016-17476.jpg",          imageAlt: "Professional hardwood floor installation"},
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/male-worker-puts-laminate-flooring-floor_169016-17476.jpg",          imageAlt: "Professional hardwood floor installation"},
         {
-          id: "service-hardwood-refinishing",          brand: "Hardwood",          name: "Hardwood Floor Refinishing",          price: "Free Estimate",          rating: 4.5,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/person-varnishing-wood-with-big-brush_23-2148748819.jpg",          imageAlt: "Hardwood floor refinishing process"},
+          id: "service-hardwood-refinishing",          brand: "Hardwood",          name: "Hardwood Floor Refinishing",          price: "Free Estimate",          rating: 5,
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/person-varnishing-wood-with-big-brush_23-2148748819.jpg",          imageAlt: "Hardwood floor refinishing process"},
         {
-          id: "service-hardwood-staining",          brand: "Hardwood",          name: "Hardwood Floor Staining",          price: "Free Estimate",          rating: 4,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/top-view-boards-mdf-material_23-2149418579.jpg",          imageAlt: "Custom hardwood floor staining"},
+          id: "service-hardwood-staining",          brand: "Hardwood",          name: "Hardwood Floor Staining",          price: "Free Estimate",          rating: 5,
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/top-view-boards-mdf-material_23-2149418579.jpg",          imageAlt: "Custom hardwood floor staining"},
         {
           id: "service-floor-sanding",          brand: "Hardwood",          name: "Floor Sanding",          price: "Free Estimate",          rating: 5,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/male-worker-using-concrete-screed-machine-construction-site_651396-2749.jpg",          imageAlt: "Floor sanding for smooth preparation"},
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/male-worker-using-concrete-screed-machine-construction-site_651396-2749.jpg",          imageAlt: "Floor sanding for smooth preparation"},
         {
-          id: "service-lvp-installation",          brand: "LVP",          name: "Luxury Vinyl Plank Installation",          price: "Free Estimate",          rating: 4.5,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/texture-background_1404-102.jpg",          imageAlt: "Luxury Vinyl Plank flooring installation"},
+          id: "service-lvp-installation",          brand: "LVP",          name: "Luxury Vinyl Plank Installation",          price: "Free Estimate",          rating: 5,
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/texture-background_1404-102.jpg",          imageAlt: "Luxury Vinyl Plank flooring installation"},
         {
-          id: "service-laminate-installation",          brand: "Laminate",          name: "Laminate Flooring Installation",          price: "Free Estimate",          rating: 4,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/still-life-yoga-equipment_23-2151725253.jpg",          imageAlt: "Laminate flooring installation"},
+          id: "service-laminate-installation",          brand: "Laminate",          name: "Laminate Flooring Installation",          price: "Free Estimate",          rating: 5,
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/still-life-yoga-equipment_23-2151725253.jpg",          imageAlt: "Laminate flooring installation"},
         {
           id: "service-floor-repairs",          brand: "Repair",          name: "Floor Repairs",          price: "Free Estimate",          rating: 5,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/man-is-working-with-mosquito-wire-screen-installation_1150-6579.jpg",          imageAlt: "Flooring repair services"},
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/man-is-working-with-mosquito-wire-screen-installation_1150-6579.jpg",          imageAlt: "Flooring repair services"},
         {
-          id: "service-custom-solutions",          brand: "Custom",          name: "Custom Flooring Solutions",          price: "Free Estimate",          rating: 4.5,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/scenery-designers-work_23-2149741835.jpg",          imageAlt: "Custom flooring design solutions"},
+          id: "service-custom-solutions",          brand: "Custom",          name: "Custom Flooring Solutions",          price: "Free Estimate",          rating: 5,
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/scenery-designers-work_23-2149741835.jpg",          imageAlt: "Custom flooring design solutions"},
       ]}
       title="Our Expert Flooring Services"
       description="Stevenson's Hardwood Floors offers a comprehensive range of solutions to meet all your residential and commercial flooring needs."
@@ -150,23 +149,23 @@ export default function LandingPage() {
       useInvertedBackground={true}
       products={[
         {
-          id: "gallery-refinishing-1",          brand: "Refinishing",          name: "Hardwood Floor Refinishing",          price: "View Project",          rating: 4.5,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/full-shot-contractors-tiling-floor_23-2149343990.jpg",          imageAlt: "Before and after of dark hardwood floor refinishing"},
+          id: "gallery-refinishing-1",          brand: "Refinishing",          name: "Hardwood Floor Refinishing",          price: "View Project",          rating: 5,
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/full-shot-contractors-tiling-floor_23-2149343990.jpg",          imageAlt: "Before and after of dark hardwood floor refinishing"},
         {
           id: "gallery-new-hardwood-1",          brand: "New Install",          name: "New Hardwood Installation",          price: "View Project",          rating: 5,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/modern-minimalist-living-room-interior_23-2152016396.jpg",          imageAlt: "Newly installed light oak hardwood floors"},
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/modern-minimalist-living-room-interior_23-2152016396.jpg",          imageAlt: "Newly installed light oak hardwood floors"},
         {
-          id: "gallery-lvp-1",          brand: "LVP",          name: "Luxury Vinyl Flooring",          price: "View Project",          rating: 4,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/neon-robot-vacuum-cleaner_23-2151349199.jpg",          imageAlt: "Luxurious kitchen with newly installed LVP flooring"},
+          id: "gallery-lvp-1",          brand: "LVP",          name: "Luxury Vinyl Flooring",          price: "View Project",          rating: 5,
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/neon-robot-vacuum-cleaner_23-2151349199.jpg",          imageAlt: "Luxurious kitchen with newly installed LVP flooring"},
         {
-          id: "gallery-commercial-1",          brand: "Commercial",          name: "Commercial Flooring Project",          price: "View Project",          rating: 4.5,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/entrance-building-bridge_122409-8.jpg",          imageAlt: "Commercial building hallway with freshly installed hardwood floors"},
+          id: "gallery-commercial-1",          brand: "Commercial",          name: "Commercial Flooring Project",          price: "View Project",          rating: 5,
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/entrance-building-bridge_122409-8.jpg",          imageAlt: "Commercial building hallway with freshly installed hardwood floors"},
         {
           id: "gallery-repairs-1",          brand: "Repairs",          name: "Floor Repair & Restoration",          price: "View Project",          rating: 5,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/glittery-golden-black-wrapping-paper_53876-88533.jpg",          imageAlt: "Before and after of a scratched and dull floor to a shiny, repaired one"},
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/glittery-golden-black-wrapping-paper_53876-88533.jpg",          imageAlt: "Before and after of a scratched and dull floor to a shiny, repaired one"},
         {
-          id: "gallery-custom-1",          brand: "Custom",          name: "Custom Flooring Design",          price: "View Project",          rating: 4,
-          reviewCount: "",          imageSrc: "http://img.b2bpic.net/free-photo/herringbone-stairs-flooring-wooden-chevron-modern-finish_169016-68991.jpg",          imageAlt: "Custom wood floor medallion in a grand entryway"},
+          id: "gallery-custom-1",          brand: "Custom",          name: "Custom Flooring Design",          price: "View Project",          rating: 5,
+          reviewCount: "50+",          imageSrc: "http://img.b2bpic.net/free-photo/herringbone-stairs-flooring-wooden-chevron-modern-finish_169016-68991.jpg",          imageAlt: "Custom wood floor medallion in a grand entryway"},
       ]}
       title="Before & After Transformations"
       description="Witness the dramatic results of our craftsmanship, turning worn-out floors into stunning centerpieces."
@@ -189,7 +188,7 @@ export default function LandingPage() {
         {
           id: "test-5",          name: "Sarah M.",          date: "December 2022",          title: "Transformed Our Home",          quote: "From the first estimate to the final walkthrough, everything was professional and stress-free. The floors completely transformed our home.",          tag: "Residential Installation",          avatarSrc: "http://img.b2bpic.net/free-photo/young-cute-woman-outdoors_624325-1712.jpg",          avatarAlt: "Sarah M.",          imageSrc: "http://img.b2bpic.net/free-photo/portrait-young-beautiful-woman-lifestyle-blogger-talking-about-makeup-camera-recording-vlog_1258-254152.jpg",          imageAlt: "New light colored hardwood floor"},
         {
-          id: "test-6",          name: "Michael R.",          date: "November 2022",          title: "Exceeded Expectations",          quote: "The quality of work exceeded our expectations. If you're looking for hardwood floor refinishing experts, this is the company to call.",          tag: "Refinishing Experts",          avatarSrc: "https://img.b2bpic.net/free-photo/two-male-colleagues-office-standing-with-laptop_1303-19624.jpg?id=6636976",          avatarAlt: "Michael R.",          imageSrc: "http://img.b2bpic.net/free-photo/liquid-makeup-foundation-texture-smudges-macro-cosmetics-texture-top-view_633478-1795.jpg",          imageAlt: "High-quality hardwood floor refinishing"},
+          id: "test-6",          name: "Michael R.",          date: "November 2022",          title: "Exceeded Expectations",          quote: "The quality of work exceeded our expectations. If you're looking for hardwood floor refinishing experts, this is the company to call.",          tag: "Refinishing Experts",          avatarSrc: "http://img.b2bpic.net/free-photo/woman-holding-i-letter_1149-1837.jpg",          avatarAlt: "Michael R.",          imageSrc: "http://img.b2bpic.net/free-photo/liquid-makeup-foundation-texture-smudges-macro-cosmetics-texture-top-view_633478-1795.jpg",          imageAlt: "High-quality hardwood floor refinishing"},
       ]}
       title="What Our Customers Say"
       description="Hear directly from homeowners and businesses who have experienced the Stevenson's Hardwood Floors difference."
@@ -223,7 +222,7 @@ export default function LandingPage() {
         {
           title: "Elite Service Award Winner",          description: "Recognized for consistently delivering outstanding service."},
       ]}
-      imageSrc="https://img.b2bpic.net/free-photo/table-consulting-paperwork-professional-invest-executive_1418-63.jpg?id=1235723"
+      imageSrc="http://img.b2bpic.net/free-photo/happy-manager-shaking-hands-with-african-american-factory-worker-industrial-building_637285-4774.jpg"
       imageAlt="Experienced flooring contractor team standing proudly"
       mediaAnimation="slide-up"
     />
