@@ -35,22 +35,22 @@ export default function LandingPage() {
                 name: "Home",                id: "/"
               },
               {
-                name: "Why Us",                id: "#why-us"
+                name: "Why Us",                id: "/#why-us"
               },
               {
-                name: "Services",                id: "#services"
+                name: "Services",                id: "/#services"
               },
               {
-                name: "Gallery",                id: "#gallery"
+                name: "Gallery",                id: "/#gallery"
               },
               {
-                name: "Reviews",                id: "#reviews"
+                name: "Reviews",                id: "/#reviews"
               },
               {
-                name: "About",                id: "#about"
+                name: "About",                id: "/#about"
               },
               {
-                name: "FAQ",                id: "#faq"
+                name: "FAQ",                id: "/#faq"
               },
               {
                 name: "Contact",                id: "/contact"
@@ -309,38 +309,38 @@ export default function LandingPage() {
               {
                 title: "Services",                items: [
                   {
-                    label: "Hardwood Installation",                    href: "#services"
+                    label: "Hardwood Installation",                    href: "/#services"
                   },
                   {
-                    label: "Refinishing & Sanding",                    href: "#services"
+                    label: "Refinishing & Sanding",                    href: "/#services"
                   },
                   {
-                    label: "LVP & Laminate",                    href: "#services"
+                    label: "LVP & Laminate",                    href: "/#services"
                   },
                   {
-                    label: "Floor Repairs",                    href: "#services"
+                    label: "Floor Repairs",                    href: "/#services"
                   },
                   {
-                    label: "Custom Solutions",                    href: "#services"
+                    label: "Custom Solutions",                    href: "/#services"
                   }
                 ]
               },
               {
                 title: "Company",                items: [
                   {
-                    label: "About Us",                    href: "#about"
+                    label: "About Us",                    href: "/#about"
                   },
                   {
-                    label: "Our Work",                    href: "#gallery"
+                    label: "Our Work",                    href: "/#gallery"
                   },
                   {
-                    label: "Testimonials",                    href: "#reviews"
+                    label: "Testimonials",                    href: "/#reviews"
                   },
                   {
-                    label: "Service Areas",                    href: "#service-areas"
+                    label: "Service Areas",                    href: "/#service-areas"
                   },
                   {
-                    label: "FAQs",                    href: "#faq"
+                    label: "FAQs",                    href: "/#faq"
                   }
                 ]
               },
