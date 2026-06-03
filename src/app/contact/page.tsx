@@ -1,80 +1,18 @@
 "use client";
 
+import { useState } from 'react';
 import { ThemeProvider } from "@/providers/themeProvider/ThemeProvider";
 import ReactLenis from "lenis/react";
-import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { CheckCircle, Phone } from "lucide-react"; // Import Lucide icons
-
 import NavbarLayoutFloatingInline from "@/components/navbar/NavbarLayoutFloatingInline";
 import FooterBase from "@/components/sections/footer/FooterBase";
+import ContactCenter from "@/components/sections/contact/ContactCenter";
+import { CheckCircle } from "lucide-react";
 
 export default function ContactPage() {
-  const router = useRouter();
-  const phoneNumber = "+13364297774"; // Consistent phone number
-
-  const [formData, setFormData] = useState({
-    name: "",    email: "",    phone: "",    message: ""});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [redirectSeconds, setRedirectSeconds] = useState(10);
-  const redirectTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setErrorMessage("");
-
-    try {
-      const response = await fetch("/api/submit-lead", {
-        method: "POST",        headers: {
-          "Content-Type": "application/json"},
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to submit lead.");
-      }
-
-      setIsSubmitted(true);
-      // Start redirect countdown
-      redirectTimerRef.current = setInterval(() => {
-        setRedirectSeconds((prev) => {
-          if (prev <= 1) {
-            if (redirectTimerRef.current) clearInterval(redirectTimerRef.current);
-            router.push("/"); // Redirect to homepage
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-
-    } catch (error: any) {
-      setErrorMessage(error.message || "An unexpected error occurred.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  // Clear interval on unmount
-  useEffect(() => {
-    return () => {
-      if (redirectTimerRef.current) {
-        clearInterval(redirectTimerRef.current);
-      }
-    };
-  }, []);
+  const [submitted, setSubmitted] = useState(false);
+  const phoneNumber = "+13364297774";
 
   const handleCallNow = () => {
-    // Existing handleCallNow logic from page.tsx
     if (navigator.clipboard) {
       navigator.clipboard.writeText(phoneNumber)
         .then(() => {
@@ -89,15 +27,40 @@ export default function ContactPage() {
     }
   };
 
-  const navbarNavItems = [
-    { name: "Home", id: "/" },
-    { name: "Why Us", id: "/#why-us" },
-    { name: "Services", id: "/#services" },
-    { name: "Gallery", id: "/#gallery" },
-    { name: "Reviews", id: "/#reviews" },
-    { name: "About", id: "/#about" },
-    { name: "FAQ", id: "/#faq" },
-    { name: "Contact", id: "/contact" },
+  const handleSubmit = (email: string) => {
+    console.log("Form submitted with email:", email);
+    // In a real application, you would send this to a backend
+    // For this task, we simulate success after a brief delay
+    setTimeout(() => {
+      setSubmitted(true);
+    }, 500);
+  };
+
+  const navItems = [
+    {
+      name: "Home",      id: "/"
+    },
+    {
+      name: "Why Us",      id: "/#why-us"
+    },
+    {
+      name: "Services",      id: "/#services"
+    },
+    {
+      name: "Gallery",      id: "/#gallery"
+    },
+    {
+      name: "Reviews",      id: "/#reviews"
+    },
+    {
+      name: "About",      id: "/#about"
+    },
+    {
+      name: "FAQ",      id: "/#faq"
+    },
+    {
+      name: "Contact",      id: "/contact"
+    }
   ];
 
   const footerColumns = [
@@ -107,8 +70,8 @@ export default function ContactPage() {
         { label: "Refinishing & Sanding", href: "/#services" },
         { label: "LVP & Laminate", href: "/#services" },
         { label: "Floor Repairs", href: "/#services" },
-        { label: "Custom Solutions", href: "/#services" },
-      ],
+        { label: "Custom Solutions", href: "/#services" }
+      ]
     },
     {
       title: "Company",      items: [
@@ -116,17 +79,17 @@ export default function ContactPage() {
         { label: "Our Work", href: "/#gallery" },
         { label: "Testimonials", href: "/#reviews" },
         { label: "Service Areas", href: "/#service-areas" },
-        { label: "FAQs", href: "/#faq" },
-      ],
+        { label: "FAQs", href: "/#faq" }
+      ]
     },
     {
       title: "Contact",      items: [
         { label: "Get Free Estimate", href: "/contact" },
         { label: "Call Us", onClick: handleCallNow },
         { label: "Email Us", href: "mailto:info@stevensonhardwoodfloors.com" },
-        { label: "Visit Us", href: "https://maps.google.com/?q=Elkin,North Carolina" },
-      ],
-    },
+        { label: "Visit Us", href: "https://maps.google.com/?q=Elkin,North Carolina" }
+      ]
+    }
   ];
 
   return (
@@ -145,100 +108,50 @@ export default function ContactPage() {
       <ReactLenis root>
         <div id="nav" data-section="nav">
           <NavbarLayoutFloatingInline
-            navItems={navbarNavItems}
+            navItems={navItems}
             brandName="Stevenson's Hardwood Floors"
-            button={{ text: "Get Free Estimate", href: "/contact" }}
+            button={{
+              text: "Get Free Estimate",              href: "/contact"
+            }}
             logoClassName="text-2xl font-semibold"
           />
         </div>
 
-        <div id="contact-form-section" data-section="contact-form-section" className="relative z-10 flex min-h-[70vh] items-center justify-center py-16 px-4">
-          {isSubmitted ? (
-            <div className="flex flex-col items-center justify-center space-y-6 text-center max-w-xl p-8 bg-card rounded-lg shadow-xl">
-              <CheckCircle className="h-24 w-24 text-green-500" />
-              <h2 className="text-4xl font-bold text-foreground">Thank You!</h2>
-              <p className="text-xl text-foreground/80">
-                Your request has been successfully submitted! We'll be in touch shortly.
+        {submitted ? (
+          <div id="contact-success" data-section="contact-success" className="min-h-[60vh] flex items-center justify-center py-16 px-4">
+            <div className="max-w-md w-full text-center space-y-6">
+              <CheckCircle className="mx-auto h-20 w-20 text-green-500" />
+              <h2 className="text-3xl font-bold text-foreground">Thank You for Your Inquiry!</h2>
+              <p className="text-lg text-foreground-lighter">
+                We have received your message and will get back to you shortly.
+                In the meantime, feel free to reach out to us directly.
               </p>
+              <div className="space-y-2 text-foreground-lighter">
+                <p>Phone: {phoneNumber}</p>
+                <p>Email: info@stevensonhardwoodfloors.com</p>
+              </div>
               <button
                 onClick={handleCallNow}
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary-cta text-primary-cta-foreground hover:bg-primary-cta/90 h-12 px-6 py-2"
+                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-cta hover:bg-primary-cta-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-cta"
               >
-                <Phone className="mr-2 h-5 w-5" />
-                Call Us Now
+                Call Now
               </button>
-              <p className="text-sm text-foreground/60">
-                Redirecting to homepage in {redirectSeconds} seconds...
-              </p>
             </div>
-          ) : (
-            <div className="w-full max-w-lg p-8 space-y-6 bg-card rounded-lg shadow-xl">
-              <h2 className="text-3xl font-bold text-center text-foreground">Get Your Free Estimate</h2>
-              <p className="text-center text-foreground/80">
-                Fill out the form below and we'll get back to you within one business day.
-              </p>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground">Phone (Optional)</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
-                  ></textarea>
-                </div>
-                {errorMessage && (
-                  <p className="text-red-500 text-sm">{errorMessage}</p>
-                )}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary-cta text-primary-cta-foreground hover:bg-primary-cta/90 h-12 px-6 py-2"
-                >
-                  {isSubmitting ? "Submitting..." : "Send Request"}
-                </button>
-              </form>
-            </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div id="contact" data-section="contact">
+            <ContactCenter
+              tag="Get in Touch"
+              title="Request a Free Estimate"
+              description="Fill out the form below to get a no-obligation estimate for your flooring project. We'll get back to you within 24 hours."
+              background={{ variant: "plain" }}
+              onSubmit={handleSubmit}
+              inputPlaceholder="Your Email"
+              buttonText="Send Message"
+              termsText="By sending this message you're confirming that you agree with our Terms and Conditions."
+            />
+          </div>
+        )}
 
         <div id="footer" data-section="footer">
           <FooterBase
