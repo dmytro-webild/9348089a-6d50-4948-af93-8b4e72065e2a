@@ -3,7 +3,6 @@
 import { ThemeProvider } from "@/providers/themeProvider/ThemeProvider";
 import ReactLenis from "lenis/react";
 import ContactSplitForm from "@/components/sections/contact/ContactSplitForm";
-import NavbarLayoutFloatingInline from "@/components/navbar/NavbarLayoutFloatingInline";
 import FooterBase from "@/components/sections/footer/FooterBase";
 
 export default function ContactPage() {
@@ -21,41 +20,6 @@ export default function ContactPage() {
       headingFontWeight="light"
     >
       <ReactLenis root>
-        <div id="nav" data-section="nav">
-          <NavbarLayoutFloatingInline
-            navItems={[
-              {
-                name: "Home",                id: "/"
-              },
-              {
-                name: "Why Homeowners Choose Us",                id: "#why-us"
-              },
-              {
-                name: "Our Expert Flooring Services",                id: "#services"
-              },
-              {
-                name: "Before & After Transformations",                id: "#gallery"
-              },
-              {
-                name: "What Our Customers Say",                id: "#reviews"
-              },
-              {
-                name: "Three Decades of Flooring Excellence",                id: "#about"
-              },
-              {
-                name: "Frequently Asked Questions",                id: "#faq"
-              },
-              {
-                name: "Contact",                id: "/contact"
-              }
-            ]}
-            brandName="Stevenson's Hardwood Floors"
-            button={{
-              text: "Get Free Estimate",              href: "/contact"
-            }}
-            logoClassName="text-2xl font-semibold"
-          />
-        </div>
 
         <div id="contact-form" data-section="contact-form">
           <ContactSplitForm
