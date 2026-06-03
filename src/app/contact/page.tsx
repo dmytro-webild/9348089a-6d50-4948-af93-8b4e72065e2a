@@ -5,26 +5,10 @@ import ReactLenis from "lenis/react";
 
 import FooterBase from "@/components/sections/footer/FooterBase";
 import NavbarLayoutFloatingInline from "@/components/navbar/NavbarLayoutFloatingInline";
-
-// New import for ContactCTA
-import ContactCTA from '@/components/sections/contact/ContactCTA';
+import ContactSplit from "@/components/sections/contact/ContactSplit";
 
 export default function ContactPage() {
   const phoneNumber = "+13364297774";
-  const handleCallNow = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(phoneNumber)
-        .then(() => {
-          alert("Phone number copied to clipboard! You can now paste it into your phone dialer or preferred communication app.");
-        })
-        .catch((err) => {
-          console.error("Failed to copy phone number:", err);
-          window.location.href = `tel:${phoneNumber}`;
-        });
-    } else {
-      window.location.href = `tel:${phoneNumber}`;
-    }
-  };
 
   return (
     <ThemeProvider
@@ -76,20 +60,19 @@ export default function ContactPage() {
           />
         </div>
 
-        <div id="contact-form" data-section="contact-form">
-          <ContactCTA
-            tag="Get in Touch"
+        <div id="contact" data-section="contact">
+          <ContactSplit
+            tag="Contact Us"
             title="Request Your Free Flooring Estimate"
-            description="Tell us about your project and a flooring specialist will contact you shortly with a free estimate. Call us directly at (336) 429-7774, or email us at info@stevensonhardwoodfloors.com. We are located in Elkin, NC, and serve surrounding communities."
-            buttons={[
-              {
-                text: "Call Now",                onClick: handleCallNow
-              },
-              {
-                text: "Email Us",                href: "mailto:info@stevensonhardwoodfloors.com"
-              }
-            ]}
-            background={{ variant: "radial-gradient" }}
+            description="Whether you're looking for a new installation, refinishing, or repairs, we're here to help. Fill out the form below to get your free, no-obligation estimate, or reach us directly at (336) 429-7774. We look forward to hearing from you!"
+            imageSrc="http://img.b2bpic.net/free-photo/view-young-handsome-worker-using-roller_23-2148782006.jpg"
+            imageAlt="Worker applying finish to a newly installed hardwood floor"
+            mediaAnimation="slide-up"
+            mediaPosition="right"
+            inputPlaceholder="Your Name, Email, Phone, & Project Details"
+            buttonText="Submit Estimate Request"
+            onSubmit={(data) => console.log(data)}
+            background={{ variant: 'plain' }}
             useInvertedBackground={false}
           />
         </div>
