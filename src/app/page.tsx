@@ -35,22 +35,22 @@ export default function LandingPage() {
                 name: "Home",                id: "/"
               },
               {
-                name: "Why Homeowners Choose Us",                id: "#why-us"
+                name: "Why Us",                id: "#why-us"
               },
               {
-                name: "Our Expert Flooring Services",                id: "#services"
+                name: "Services",                id: "#services"
               },
               {
-                name: "Before & After Transformations",                id: "#gallery"
+                name: "Gallery",                id: "#gallery"
               },
               {
-                name: "What Our Customers Say",                id: "#reviews"
+                name: "Reviews",                id: "#reviews"
               },
               {
-                name: "Three Decades of Flooring Excellence",                id: "#about"
+                name: "About",                id: "#about"
               },
               {
-                name: "Frequently Asked Questions",                id: "#faq"
+                name: "FAQ",                id: "#faq"
               },
               {
                 name: "Contact",                id: "/contact"
@@ -267,7 +267,7 @@ export default function LandingPage() {
                 title: "Elite Service Award Winner",                description: "Recognized for consistently delivering outstanding service."
               }
             ]}
-            imageSrc="https://img.b2bpic.net/free-photo/table-consulting-paperwork-professional-invest-executive_1418-63.jpg?id=1235723\u0026_wi=1"
+            imageSrc="https://img.b2bpic.net/free-photo/table-consulting-paperwork-professional-invest-executive_1418-63.jpg?id=1235723&_wi=1"
             imageAlt="Experienced flooring contractor team standing proudly"
             mediaAnimation="slide-up"
           />
