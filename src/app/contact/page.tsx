@@ -63,7 +63,7 @@ export default function ContactPage() {
                 "Hardwood Floor Installation",                "Hardwood Floor Refinishing",                "Floor Sanding",                "Luxury Vinyl Plank Installation",                "Laminate Flooring Installation",                "Floor Repairs",                "Custom Flooring Solutions",                "Other"],
             }}
             buttonText="Submit Request"
-            imageSrc="https://img.b2bpic.net/free-photo/table-consulting-paperwork-professional-invest-executive_1418-63.jpg?id=1235723"
+            imageSrc="https://img.b2bpic.net/free-photo/table-consulting-paperwork-professional-invest-executive_1418-63.jpg?id=1235723&_wi=2"
             imageAlt="Experienced flooring contractor reviewing paperwork"
             mediaPosition="right"
             useInvertedBackground={false}
