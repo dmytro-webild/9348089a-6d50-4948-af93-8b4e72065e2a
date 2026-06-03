@@ -145,6 +145,7 @@ export default function ContactPage() {
               title="Request a Free Estimate"
               description="Fill out the form below to get a no-obligation estimate for your flooring project. We'll get back to you within 24 hours."
               background={{ variant: "plain" }}
+              useInvertedBackground={false}
               onSubmit={handleSubmit}
               inputPlaceholder="Your Email"
               buttonText="Send Message"
