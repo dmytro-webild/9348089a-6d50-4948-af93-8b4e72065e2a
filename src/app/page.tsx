@@ -205,7 +205,7 @@ export default function LandingPage() {
             textboxLayout="default"
             useInvertedBackground={true}
             names={[
-              "Elkin",              "Jonesville",              "Arlington",              ""Pleasant Hill",              "Ronda",              "State Road",              "Surrounding NC Communities"
+              "Elkin",              "Jonesville",              "Arlington",              "Pleasant Hill",              "Ronda",              "State Road",              "Surrounding NC Communities"
             ]}
             title="Proudly Serving North Carolina"
             description="Stevenson's Hardwood Floors is dedicated to bringing exceptional flooring services to homes and businesses across a wide range of communities."
