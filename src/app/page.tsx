@@ -368,7 +368,7 @@ export default function LandingPage() {
                     label: "Get Free Estimate",                    href: "/contact"
                   },
                   {
-                    label: "Call Us",                    href: "tel:+13364297774"
+                    label: "Call Us",                    onClick: handleCallNow
                   },
                   {
                     label: "Email Us",                    href: "mailto:info@stevensonhardwoodfloors.com"
