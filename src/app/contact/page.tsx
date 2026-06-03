@@ -2,60 +2,132 @@
 
 import { ThemeProvider } from "@/providers/themeProvider/ThemeProvider";
 import ReactLenis from "lenis/react";
-import React, { useState, useEffect } from "react";
-import { CheckCircle } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { CheckCircle, Phone } from "lucide-react"; // Import Lucide icons
 
 import NavbarLayoutFloatingInline from "@/components/navbar/NavbarLayoutFloatingInline";
 import FooterBase from "@/components/sections/footer/FooterBase";
-import ContactSplitForm from "@/components/sections/contact/ContactSplitForm";
 
 export default function ContactPage() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [redirectSeconds, setRedirectSeconds] = useState(10);
   const router = useRouter();
+  const phoneNumber = "+13364297774"; // Consistent phone number
 
-  const businessPhoneNumber = "+1 (336) 429-7774";
-  const displayPhoneNumber = "(336) 429-7774";
-  const businessEmail = "info@stevensonhardwoodfloors.com";
+  const [formData, setFormData] = useState({
+    name: "",    email: "",    phone: "",    message: ""});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [redirectSeconds, setRedirectSeconds] = useState(10);
+  const redirectTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    if (isSubmitted) {
-      const timer = setInterval(() => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/submit-lead", {
+        method: "POST",        headers: {
+          "Content-Type": "application/json"},
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to submit lead.");
+      }
+
+      setIsSubmitted(true);
+      // Start redirect countdown
+      redirectTimerRef.current = setInterval(() => {
         setRedirectSeconds((prev) => {
-          if (prev === 1) {
-            clearInterval(timer);
-            router.push("/");
+          if (prev <= 1) {
+            if (redirectTimerRef.current) clearInterval(redirectTimerRef.current);
+            router.push("/"); // Redirect to homepage
             return 0;
           }
           return prev - 1;
         });
       }, 1000);
 
-      // Clear the timer if the component unmounts or submission state changes
-      return () => clearInterval(timer);
+    } catch (error: any) {
+      setErrorMessage(error.message || "An unexpected error occurred.");
+    } finally {
+      setIsSubmitting(false);
     }
-  }, [isSubmitted, router]);
-
-  const handleContactSubmit = async (data: Record<string, string>) => {
-    const submissionData = {
-      Timestamp: new Date().toISOString(),
-      Name: data.name,
-      Phone: data.phone,
-      Email: data.email,
-      City: data.city,
-      "Service Needed": data.serviceNeeded || "N/A",      "Project Details": data.projectDetails || "N/A",      "Source Page": window.location.href,
-    };
-    console.log("Lead Data Submitted:", submissionData);
-    // In a real application, this would send data to an API endpoint
-    // await fetch('/api/submit-lead', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(submissionData),
-    // });
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
-    setIsSubmitted(true);
   };
+
+  // Clear interval on unmount
+  useEffect(() => {
+    return () => {
+      if (redirectTimerRef.current) {
+        clearInterval(redirectTimerRef.current);
+      }
+    };
+  }, []);
+
+  const handleCallNow = () => {
+    // Existing handleCallNow logic from page.tsx
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(phoneNumber)
+        .then(() => {
+          alert("Phone number copied to clipboard! You can now paste it into your phone dialer or preferred communication app.");
+        })
+        .catch((err) => {
+          console.error("Failed to copy phone number:", err);
+          window.location.href = `tel:${phoneNumber}`;
+        });
+    } else {
+      window.location.href = `tel:${phoneNumber}`;
+    }
+  };
+
+  const navbarNavItems = [
+    { name: "Home", id: "/" },
+    { name: "Why Us", id: "/#why-us" },
+    { name: "Services", id: "/#services" },
+    { name: "Gallery", id: "/#gallery" },
+    { name: "Reviews", id: "/#reviews" },
+    { name: "About", id: "/#about" },
+    { name: "FAQ", id: "/#faq" },
+    { name: "Contact", id: "/contact" },
+  ];
+
+  const footerColumns = [
+    {
+      title: "Services",      items: [
+        { label: "Hardwood Installation", href: "/#services" },
+        { label: "Refinishing & Sanding", href: "/#services" },
+        { label: "LVP & Laminate", href: "/#services" },
+        { label: "Floor Repairs", href: "/#services" },
+        { label: "Custom Solutions", href: "/#services" },
+      ],
+    },
+    {
+      title: "Company",      items: [
+        { label: "About Us", href: "/#about" },
+        { label: "Our Work", href: "/#gallery" },
+        { label: "Testimonials", href: "/#reviews" },
+        { label: "Service Areas", href: "/#service-areas" },
+        { label: "FAQs", href: "/#faq" },
+      ],
+    },
+    {
+      title: "Contact",      items: [
+        { label: "Get Free Estimate", href: "/contact" },
+        { label: "Call Us", onClick: handleCallNow },
+        { label: "Email Us", href: "mailto:info@stevensonhardwoodfloors.com" },
+        { label: "Visit Us", href: "https://maps.google.com/?q=Elkin,North Carolina" },
+      ],
+    },
+  ];
 
   return (
     <ThemeProvider
@@ -73,108 +145,104 @@ export default function ContactPage() {
       <ReactLenis root>
         <div id="nav" data-section="nav">
           <NavbarLayoutFloatingInline
-            navItems={[
-              { name: "Home", id: "/" },
-              { name: "Why Us", id: "/#why-us" },
-              { name: "Services", id: "/#services" },
-              { name: "Gallery", id: "/#gallery" },
-              { name: "Reviews", id: "/#reviews" },
-              { name: "About", id: "/#about" },
-              { name: "FAQ", id: "/#faq" },
-              { name: "Contact", id: "/contact" }
-            ]}
+            navItems={navbarNavItems}
             brandName="Stevenson's Hardwood Floors"
             button={{ text: "Get Free Estimate", href: "/contact" }}
             logoClassName="text-2xl font-semibold"
           />
         </div>
 
-        <div id="contact-form-section" data-section="contact-form-section" className="relative isolate min-h-screen pt-20 lg:pt-24 flex items-center justify-center bg-background text-foreground">
-          <div className="relative mx-auto px-6 py-12 lg:px-8 max-w-2xl w-full">
-            {isSubmitted ? (
-              <div className="bg-card text-foreground p-8 rounded-lg shadow-xl text-center border border-accent/20">
-                <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-6" />
-                <h2 className="text-4xl font-bold tracking-tight mb-4 text-primary-cta">Thank You!</h2>
-                <p className="text-lg mb-6 leading-relaxed">
-                  Your request has been successfully submitted.
-                </p>
-                <p className="mb-6 leading-relaxed">
-                  We appreciate your interest in Stevenson's Hardwood Floors. A member of our team will review your information and contact you shortly to discuss your flooring project and provide your free estimate.
-                </p>
-                <p className="text-lg font-semibold mb-4">
-                  If you need immediate assistance, call us at:
-                </p>
-                <a
-                  href={`tel:${businessPhoneNumber}`}
-                  className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-10 px-8 py-2 bg-primary-cta text-primary-cta-text hover:bg-primary-cta/90 shadow-md text-xl mb-6"
-                >
-                  <span className="relative z-10">{displayPhoneNumber}</span>
-                </a>
-                <p className="text-foreground/70 text-sm italic mt-4">
-                  Serving North Carolina homeowners and businesses with trusted flooring craftsmanship for over 30 years.
-                </p>
-                <p className="mt-8 text-sm text-foreground/60">
-                  Redirecting you back to the homepage in {redirectSeconds} seconds...
-                </p>
-              </div>
-            ) : (
-              <>
-                <ContactSplitForm
-                  title="Request Your Free Flooring Estimate"
-                  description="Tell us about your project and a flooring specialist will contact you shortly with a free estimate."
-                  inputs={[
-                    { name: "name", type: "text", placeholder: "Your Name", required: true },
-                    { name: "phone", type: "tel", placeholder: "Your Phone Number", required: true },
-                    { name: "email", type: "email", placeholder: "Your Email", required: true },
-                    { name: "city", type: "text", placeholder: "Your City", required: true },
-                    { name: "serviceNeeded", type: "text", placeholder: "e.g., Hardwood Installation, Refinishing, LVP", required: false }
-                  ]}
-                  textarea={{ name: "projectDetails", placeholder: "Tell us about your project details, dimensions, or any specific requirements.", rows: 4, required: false }}
-                  buttonText="Submit Request"
-                  onSubmit={handleContactSubmit}
-                  useInvertedBackground={false}
-                />
-                <div className="text-center mt-8 text-foreground/80">
-                  <p className="text-lg">Prefer to speak with us directly?</p>
-                  <p className="mt-2 text-xl font-semibold">Call us: <a href={`tel:${businessPhoneNumber}`} className="text-primary-cta hover:underline">{displayPhoneNumber}</a></p>
-                  <p className="text-lg">Email us: <a href={`mailto:${businessEmail}`} className="text-primary-cta hover:underline">{businessEmail}</a></p>
-                  <p className="mt-4 text-sm">Stevenson's Hardwood Floors | Serving Elkin, NC & surrounding areas.</p>
+        <div id="contact-form-section" data-section="contact-form-section" className="relative z-10 flex min-h-[70vh] items-center justify-center py-16 px-4">
+          {isSubmitted ? (
+            <div className="flex flex-col items-center justify-center space-y-6 text-center max-w-xl p-8 bg-card rounded-lg shadow-xl">
+              <CheckCircle className="h-24 w-24 text-green-500" />
+              <h2 className="text-4xl font-bold text-foreground">Thank You!</h2>
+              <p className="text-xl text-foreground/80">
+                Your request has been successfully submitted! We'll be in touch shortly.
+              </p>
+              <button
+                onClick={handleCallNow}
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary-cta text-primary-cta-foreground hover:bg-primary-cta/90 h-12 px-6 py-2"
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                Call Us Now
+              </button>
+              <p className="text-sm text-foreground/60">
+                Redirecting to homepage in {redirectSeconds} seconds...
+              </p>
+            </div>
+          ) : (
+            <div className="w-full max-w-lg p-8 space-y-6 bg-card rounded-lg shadow-xl">
+              <h2 className="text-3xl font-bold text-center text-foreground">Get Your Free Estimate</h2>
+              <p className="text-center text-foreground/80">
+                Fill out the form below and we'll get back to you within one business day.
+              </p>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-foreground">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
+                  />
                 </div>
-              </>
-            )}
-          </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-foreground">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-foreground">Phone (Optional)</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
+                  ></textarea>
+                </div>
+                {errorMessage && (
+                  <p className="text-red-500 text-sm">{errorMessage}</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary-cta text-primary-cta-foreground hover:bg-primary-cta/90 h-12 px-6 py-2"
+                >
+                  {isSubmitting ? "Submitting..." : "Send Request"}
+                </button>
+              </form>
+            </div>
+          )}
         </div>
 
         <div id="footer" data-section="footer">
           <FooterBase
-            columns={[
-              {
-                title: "Services",                items: [
-                  { label: "Hardwood Installation", href: "/#services" },
-                  { label: "Refinishing & Sanding", href: "/#services" },
-                  { label: "LVP & Laminate", href: "/#services" },
-                  { label: "Floor Repairs", href: "/#services" },
-                  { label: "Custom Solutions", href: "/#services" }
-                ]
-              },
-              {
-                title: "Company",                items: [
-                  { label: "About Us", href: "/#about" },
-                  { label: "Our Work", href: "/#gallery" },
-                  { label: "Testimonials", href: "/#reviews" },
-                  { label: "Service Areas", href: "/#service-areas" },
-                  { label: "FAQs", href: "/#faq" }
-                ]
-              },
-              {
-                title: "Contact",                items: [
-                  { label: "Get Free Estimate", href: "/contact" },
-                  { label: "Call Us", href: `tel:${businessPhoneNumber}` },
-                  { label: "Email Us", href: `mailto:${businessEmail}` },
-                  { label: "Visit Us", href: "https://maps.google.com/?q=Elkin,North Carolina" }
-                ]
-              }
-            ]}
+            columns={footerColumns}
             logoText="Stevenson's Hardwood Floors"
             copyrightText="© 2024 Stevenson's Hardwood Floors. All rights reserved."
           />
