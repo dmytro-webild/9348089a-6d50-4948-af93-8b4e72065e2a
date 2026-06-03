@@ -14,6 +14,24 @@ import SplitAbout from "@/components/sections/about/SplitAbout";
 import TestimonialCardFive from "@/components/sections/testimonial/TestimonialCardFive";
 
 export default function LandingPage() {
+  const phoneNumber = "+13364297774";
+  const handleCallNow = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(phoneNumber)
+        .then(() => {
+          alert("Phone number copied to clipboard! You can now paste it into your phone dialer or preferred communication app.");
+        })
+        .catch((err) => {
+          console.error("Failed to copy phone number:", err);
+          // Fallback or just proceed to call
+          window.location.href = `tel:${phoneNumber}`;
+        });
+    } else {
+      // Fallback for browsers without clipboard API or mobile
+      window.location.href = `tel:${phoneNumber}`;
+    }
+  };
+
   return (
     <ThemeProvider
       defaultButtonVariant="hover-magnetic"
@@ -58,7 +76,7 @@ export default function LandingPage() {
             ]}
             brandName="Stevenson's Hardwood Floors"
             button={{
-              text: "Get Free Estimate",              href: "/contact"
+              text: "Get Free Estimate",              onClick: handleCallNow
             }}
             logoClassName="text-2xl font-semibold"
           />
@@ -74,10 +92,10 @@ export default function LandingPage() {
             tag="✓ 30+ Years Experience • BBB Accredited • HomeAdvisor Approved • 50+ Five-Star Reviews • Licensed & Insured"
             buttons={[
               {
-                text: "Get Free Estimate",                href: "/contact"
+                text: "Get Free Estimate",                onClick: handleCallNow
               },
               {
-                text: "Call Now",                href: "tel:+13364297774"
+                text: "Call Now",                onClick: handleCallNow
               }
             ]}
             mediaItems={[
@@ -347,7 +365,7 @@ export default function LandingPage() {
               {
                 title: "Contact",                items: [
                   {
-                    label: "Get Free Estimate",                    href: "/contact"
+                    label: "Get Free Estimate",                    href: "tel:+13364297774"
                   },
                   {
                     label: "Call Us",                    href: "tel:+13364297774"
