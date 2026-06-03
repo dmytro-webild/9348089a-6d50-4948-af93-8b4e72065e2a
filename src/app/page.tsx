@@ -223,7 +223,7 @@ export default function LandingPage() {
         {
           title: "Elite Service Award Winner",          description: "Recognized for consistently delivering outstanding service."},
       ]}
-      imageSrc="http://img.b2bpic.net/free-photo/happy-manager-shaking-hands-with-african-american-factory-worker-industrial-building_637285-4774.jpg"
+      imageSrc="https://img.b2bpic.net/free-photo/table-consulting-paperwork-professional-invest-executive_1418-63.jpg?id=1235723"
       imageAlt="Experienced flooring contractor team standing proudly"
       mediaAnimation="slide-up"
     />
