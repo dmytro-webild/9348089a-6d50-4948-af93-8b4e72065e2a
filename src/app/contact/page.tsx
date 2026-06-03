@@ -28,22 +28,22 @@ export default function ContactPage() {
                 name: "Home",                id: "/"
               },
               {
-                name: "Why Us",                id: "#why-us"
+                name: "Why Homeowners Choose Us",                id: "#why-us"
               },
               {
-                name: "Services",                id: "#services"
+                name: "Our Expert Flooring Services",                id: "#services"
               },
               {
-                name: "Gallery",                id: "#gallery"
+                name: "Before & After Transformations",                id: "#gallery"
               },
               {
-                name: "Reviews",                id: "#reviews"
+                name: "What Our Customers Say",                id: "#reviews"
               },
               {
-                name: "About",                id: "#about"
+                name: "Three Decades of Flooring Excellence",                id: "#about"
               },
               {
-                name: "FAQ",                id: "#faq"
+                name: "Frequently Asked Questions",                id: "#faq"
               },
               {
                 name: "Contact",                id: "/contact"
@@ -73,7 +73,7 @@ export default function ContactPage() {
               ]
             }}
             buttonText="Submit Request"
-            imageSrc="https://img.b2bpic.net/free-photo/table-consulting-paperwork-professional-invest-executive_1418-63.jpg?id=1235723&_wi=2"
+            imageSrc="https://img.b2bpic.net/free-photo/table-consulting-paperwork-professional-invest-executive_1418-63.jpg?id=1235723\u0026_wi=2"
             imageAlt="Experienced flooring contractor reviewing paperwork"
             mediaPosition="right"
             useInvertedBackground={false}
