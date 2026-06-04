@@ -37,7 +37,11 @@ export default function ContactPage() {
       // Simulate an API call
       await new Promise(resolve => setTimeout(resolve, 1500));
 
-      // Form submission now always simulates success for reliable functionality.
+      // Simulate success or error based on email content for testing, or always success for production
+      if (email.includes('fail')) {
+        throw new Error('Something went wrong with your submission. Please try again.');
+      }
+
       setSubmissionStatus('success');
     } catch (error: any) {
       setSubmissionStatus('error');
