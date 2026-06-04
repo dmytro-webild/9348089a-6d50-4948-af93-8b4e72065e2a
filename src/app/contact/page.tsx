@@ -15,14 +15,14 @@ export default function ContactPage() {
   const phoneNumber = "+13364297774"; // Consistent phone number
 
   const [formData, setFormData] = useState({
-    name: "",    email: "",    phone: "",    message: ""});
+    fullName: "",    emailAddress: "",    phoneNumber: "",    serviceNeeded: "",    projectDescription: ""});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [redirectSeconds, setRedirectSeconds] = useState(10);
   const redirectTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -158,14 +158,23 @@ export default function ContactPage() {
               <CheckCircle className="h-24 w-24 text-green-500" />
               <h2 className="text-4xl font-bold text-foreground">Thank You!</h2>
               <p className="text-xl text-foreground/80">
-                Your request has been successfully submitted! We'll be in touch shortly.
+                Your information has been successfully submitted.
               </p>
+              <p className="text-lg text-foreground/80">
+                A member of the Stevenson's Hardwood Floors team will contact you shortly regarding your flooring project and free estimate.
+              </p>
+              <p className="text-lg text-foreground/80">
+                For immediate assistance, call:
+              </p>
+              <a href={`tel:${phoneNumber}`} className="text-2xl font-bold text-primary-cta hover:underline">
+                (336) 429-7774
+              </a>
               <button
                 onClick={handleCallNow}
                 className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary-cta text-primary-cta-foreground hover:bg-primary-cta/90 h-12 px-6 py-2"
               >
                 <Phone className="mr-2 h-5 w-5" />
-                Call Us Now
+                Call Now
               </button>
               <p className="text-sm text-foreground/60">
                 Redirecting to homepage in {redirectSeconds} seconds...
@@ -173,55 +182,78 @@ export default function ContactPage() {
             </div>
           ) : (
             <div className="w-full max-w-lg p-8 space-y-6 bg-card rounded-lg shadow-xl">
-              <h2 className="text-3xl font-bold text-center text-foreground">Get Your Free Estimate</h2>
+              <h2 className="text-3xl font-bold text-center text-foreground">Request Your Free Flooring Estimate</h2>
               <p className="text-center text-foreground/80">
-                Fill out the form below and we'll get back to you within one business day.
+                Tell us about your project and a member of our team will contact you shortly.
               </p>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-foreground">Name</label>
+                  <label htmlFor="fullName" className="block text-sm font-medium text-foreground">Full Name</label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="fullName"
+                    name="fullName"
+                    value={formData.fullName}
                     onChange={handleInputChange}
                     required
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-foreground">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground">Phone (Optional)</label>
+                  <label htmlFor="phoneNumber" className="block text-sm font-medium text-foreground">Phone Number</label>
                   <input
                     type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
                     onChange={handleInputChange}
+                    required
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    value={formData.message}
+                  <label htmlFor="emailAddress" className="block text-sm font-medium text-foreground">Email Address</label>
+                  <input
+                    type="email"
+                    id="emailAddress"
+                    name="emailAddress"
+                    value={formData.emailAddress}
                     onChange={handleInputChange}
                     required
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="serviceNeeded" className="block text-sm font-medium text-foreground">Service Needed</label>
+                  <select
+                    id="serviceNeeded"
+                    name="serviceNeeded"
+                    value={formData.serviceNeeded}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
+                  >
+                    <option value="">Select a Service</option>
+                    <option value="Hardwood Floor Installation">Hardwood Floor Installation</option>
+                    <option value="Hardwood Floor Refinishing">Hardwood Floor Refinishing</option>
+                    <option value="Hardwood Floor Staining">Hardwood Floor Staining</option>
+                    <option value="Floor Sanding">Floor Sanding</option>
+                    <option value="Luxury Vinyl Plank Installation">Luxury Vinyl Plank Installation</option>
+                    <option value="Laminate Flooring Installation">Laminate Flooring Installation</option>
+                    <option value="Floor Repairs">Floor Repairs</option>
+                    <option value="Custom Flooring">Custom Flooring</option>
+                    <option value="Commercial Flooring">Commercial Flooring</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="projectDescription" className="block text-sm font-medium text-foreground">Project Description (Optional)</label>
+                  <textarea
+                    id="projectDescription"
+                    name="projectDescription"
+                    rows={4}
+                    value={formData.projectDescription}
+                    onChange={handleInputChange}
                     className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-cta focus:ring-primary-cta bg-background text-foreground py-2 px-3"
                   ></textarea>
                 </div>
@@ -233,7 +265,7 @@ export default function ContactPage() {
                   disabled={isSubmitting}
                   className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary-cta text-primary-cta-foreground hover:bg-primary-cta/90 h-12 px-6 py-2"
                 >
-                  {isSubmitting ? "Submitting..." : "Send Request"}
+                  {isSubmitting ? "Submitting..." : "Get My Free Estimate"}
                 </button>
               </form>
             </div>
