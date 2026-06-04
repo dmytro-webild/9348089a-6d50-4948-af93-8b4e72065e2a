@@ -125,6 +125,7 @@ export default function ContactPage() {
               title="Get Your Free Flooring Estimate Today!"
               description="Ready to transform your floors? Fill out the form below or give us a call to schedule your free, no-obligation estimate. We look forward to hearing from you!"
               background={{ variant: "radial-gradient" }}
+              useInvertedBackground={false}
               imageSrc="https://img.b2bpic.net/free-photo/carpenter-working-with-wooden-planks_23-2149141042.jpg"
               imageAlt="Contact us for a free estimate"
               mediaAnimation="slide-up"
