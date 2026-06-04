@@ -69,6 +69,9 @@ export default function LandingPage() {
               },
               {
                 name: "FAQ",                id: "/#faq"
+              },
+              {
+                name: "Contact",                id: "/contact"
               }
             ]}
             brandName="Stevenson's Hardwood Floors"
