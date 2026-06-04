@@ -34,11 +34,16 @@ export default function ContactPage() {
     setErrorMessage("");
 
     try {
+      const dataToSend = {
+        ...formData,
+        sourcePage: window.location.href, // Capture the source page for lead tracking
+      };
+
       const response = await fetch("/api/submit-lead", {
         method: "POST",        headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(dataToSend)
       });
 
       if (!response.ok) {
