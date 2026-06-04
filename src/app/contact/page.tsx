@@ -19,7 +19,7 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | JSX.Element>("");
+  const [errorMessage, setErrorMessage] = useState<string | React.ReactNode>("");
   const [redirectSeconds, setRedirectSeconds] = useState(10);
   const redirectTimerRef = useRef<NodeJS.Timeout | null>(null);
 
