@@ -15,10 +15,11 @@ export default function ContactPage() {
   const phoneNumber = "+13364297774"; // Consistent phone number
 
   const [formData, setFormData] = useState({
-    fullName: "",    emailAddress: "",    phoneNumber: "",    serviceNeeded: "",    projectDescription: ""});
+    fullName: "",    emailAddress: "",    phoneNumber: "",    serviceNeeded: "",    projectDescription: ""
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string | JSX.Element>("");
   const [redirectSeconds, setRedirectSeconds] = useState(10);
   const redirectTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -35,12 +36,14 @@ export default function ContactPage() {
     try {
       const response = await fetch("/api/submit-lead", {
         method: "POST",        headers: {
-          "Content-Type": "application/json"},
-        body: JSON.stringify(formData),
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
       });
 
       if (!response.ok) {
         const errorData = await response.json();
+        // The user explicitly requested a specific error message for any failure
         throw new Error(errorData.message || "Failed to submit lead.");
       }
 
@@ -56,9 +59,16 @@ export default function ContactPage() {
           return prev - 1;
         });
       }, 1000);
-
     } catch (error: any) {
-      setErrorMessage(error.message || "An unexpected error occurred.");
+      // Display the user-requested error message
+      setErrorMessage(
+        <>
+          Something went wrong. Please try again or{" "}
+          <a href={`tel:${phoneNumber}`} className="underline font-medium">
+            call us at (336) 429-7774
+          </a>.
+        </>
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -97,7 +107,7 @@ export default function ContactPage() {
     { name: "Reviews", id: "/#reviews" },
     { name: "About", id: "/#about" },
     { name: "FAQ", id: "/#faq" },
-    { name: "Contact", id: "/contact" },
+    { name: "Contact", id: "/contact" }
   ];
 
   const footerColumns = [
@@ -107,8 +117,8 @@ export default function ContactPage() {
         { label: "Refinishing & Sanding", href: "/#services" },
         { label: "LVP & Laminate", href: "/#services" },
         { label: "Floor Repairs", href: "/#services" },
-        { label: "Custom Solutions", href: "/#services" },
-      ],
+        { label: "Custom Solutions", href: "/#services" }
+      ]
     },
     {
       title: "Company",      items: [
@@ -116,17 +126,17 @@ export default function ContactPage() {
         { label: "Our Work", href: "/#gallery" },
         { label: "Testimonials", href: "/#reviews" },
         { label: "Service Areas", href: "/#service-areas" },
-        { label: "FAQs", href: "/#faq" },
-      ],
+        { label: "FAQs", href: "/#faq" }
+      ]
     },
     {
       title: "Contact",      items: [
         { label: "Get Free Estimate", href: "/contact" },
         { label: "Call Us", onClick: handleCallNow },
         { label: "Email Us", href: "mailto:info@stevensonhardwoodfloors.com" },
-        { label: "Visit Us", href: "https://maps.google.com/?q=Elkin,North Carolina" },
-      ],
-    },
+        { label: "Visit Us", href: "https://maps.google.com/?q=Elkin,North Carolina" }
+      ]
+    }
   ];
 
   return (
