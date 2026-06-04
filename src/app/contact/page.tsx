@@ -65,10 +65,11 @@ export default function ContactPage() {
         });
       }, 1000);
     } catch (error: any) {
-      // Display the user-requested error message
+      // Display a specific error message based on the caught error
+      const message = error.message || "An unexpected error occurred.";
       setErrorMessage(
         <>
-          Something went wrong. Please try again or{" "}
+          Submission failed: {message} Please try again or{" "}
           <a href={`tel:${phoneNumber}`} className="underline font-medium">
             call us at (336) 429-7774
           </a>.
