@@ -168,17 +168,8 @@ export default function ContactPage() {
               <CheckCircle className="h-24 w-24 text-green-500" />
               <h2 className="text-4xl font-bold text-foreground">Thank You!</h2>
               <p className="text-xl text-foreground/80">
-                Your information has been successfully submitted.
+                Your information has been successfully submitted. A member of the Stevenson's Hardwood Floors team will contact you shortly regarding your flooring project and free estimate. For immediate assistance call: <a href={`tel:${phoneNumber}`} className="underline font-medium">(336) 429-7774</a>
               </p>
-              <p className="text-lg text-foreground/80">
-                A member of the Stevenson's Hardwood Floors team will contact you shortly regarding your flooring project and free estimate.
-              </p>
-              <p className="text-lg text-foreground/80">
-                For immediate assistance, call:
-              </p>
-              <a href={`tel:${phoneNumber}`} className="text-2xl font-bold text-primary-cta hover:underline">
-                (336) 429-7774
-              </a>
               <button
                 onClick={handleCallNow}
                 className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary-cta text-primary-cta-foreground hover:bg-primary-cta/90 h-12 px-6 py-2"
