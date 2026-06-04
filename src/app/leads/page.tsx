@@ -7,6 +7,24 @@ import NavbarLayoutFloatingInline from "@/components/navbar/NavbarLayoutFloating
 import FooterBase from "@/components/sections/footer/FooterBase";
 
 export default function LeadsDashboardPage() {
+  const phoneNumber = "+13364297774";
+  const handleCallNow = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(phoneNumber)
+        .then(() => {
+          alert("Phone number copied to clipboard! You can now paste it into your phone dialer or preferred communication app.");
+        })
+        .catch((err) => {
+          console.error("Failed to copy phone number:", err);
+          // Fallback or just proceed to call
+          window.location.href = `tel:${phoneNumber}`;
+        });
+    } else {
+      // Fallback for browsers without clipboard API or mobile
+      window.location.href = `tel:${phoneNumber}`;
+    }
+  };
+
   return (
     <ThemeProvider
       defaultButtonVariant="hover-magnetic"
@@ -91,7 +109,7 @@ export default function LeadsDashboardPage() {
               {
                 title: "Contact",                items: [
                   { label: "Get Free Estimate", href: "/contact" },
-                  { label: "Call Us", href: "tel:+13364297774" },
+                  { label: "Call Us", onClick: handleCallNow },
                   { label: "Email Us", href: "mailto:info@stevensonhardwoodfloors.com" },
                   { label: "Visit Us", href: "https://maps.google.com/?q=Elkin,North Carolina" }
                 ]
