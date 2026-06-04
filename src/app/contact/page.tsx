@@ -71,7 +71,7 @@ export default function ContactPage() {
         <>
           Submission failed: {message} Please try again or{" "}
           <a href={`tel:${phoneNumber}`} className="underline font-medium">
-            call us at (336) 429-7774
+            call us at {phoneNumber}
           </a>.
         </>
       );
@@ -174,7 +174,7 @@ export default function ContactPage() {
               <CheckCircle className="h-24 w-24 text-green-500" />
               <h2 className="text-4xl font-bold text-foreground">Thank You!</h2>
               <p className="text-xl text-foreground/80">
-                Your information has been successfully submitted. A member of the Stevenson's Hardwood Floors team will contact you shortly regarding your flooring project and free estimate. For immediate assistance call: <a href={`tel:${phoneNumber}`} className="underline font-medium">(336) 429-7774</a>
+                Your information has been successfully submitted. A member of the Stevenson's Hardwood Floors team will contact you shortly regarding your flooring project and free estimate. For immediate assistance call: <a href={`tel:${phoneNumber}`} className="underline font-medium">{phoneNumber}</a>
               </p>
               <button
                 onClick={handleCallNow}
