@@ -78,7 +78,9 @@ export default function LandingPage() {
             button={{
               text: "Get Free Estimate",              href: "/contact"
             }}
-            logoClassName="text-2xl font-semibold"
+            logoSrc="https://webuild-dev.s3.eu-north-1.amazonaws.com/users/user_3EaU7z1YR1G2bja576OZ0wd1siV/uploaded-1780914558083-wtkfdknn.png"
+            logoAlt="Stevenson's Hardwood Floors Logo"
+            logoImageClassName="h-[40px] sm:h-[50px] lg:h-[70px] max-h-[70px] w-auto"
           />
         </div>
 
@@ -381,6 +383,9 @@ export default function LandingPage() {
             ]}
             logoText="Stevenson's Hardwood Floors"
             copyrightText="© 2024 Stevenson's Hardwood Floors. All rights reserved."
+            logoSrc="https://webuild-dev.s3.eu-north-1.amazonaws.com/users/user_3EaU7z1YR1G2bja576OZ0wd1siV/uploaded-1780914558083-wtkfdknn.png"
+            logoAlt="Stevenson's Hardwood Floors Logo"
+            logoImageClassName="h-[40px] max-h-[60px] w-auto"
           />
         </div>
       </ReactLenis>
